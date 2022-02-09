@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Class component: can show state
+class App extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			txt: 'this is the default state text...'
+		}
+	}
+	update( e ){
+		this.setState({txt: e.target.value})
+	}
+	render() {
+		return (
+			<div>
+				<h1>{this.state.txt}</h1>
+				<Widget update={this.update.bind(this)} />
+				<Button>Submit</Button>
+			</div>
+		)
+	}
 }
+
+// Component function
+const Widget = (props) => 
+	<input type="text" onChange={props.update} />
+
+const Button = (props) =>
+	<button>{props.children}</button>
 
 export default App;
