@@ -1,32 +1,20 @@
 import React from "react";
+import { ReactDOM } from "react-dom";
+import "./App.css";
+import Header from "./components/Header"; 
 
-// Class component: can show state
-class App extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			txt: 'this is the default state text...'
-		}
-	}
-	update( e ){
-		this.setState({txt: e.target.value})
-	}
-	render() {
-		return (
-			<div>
-				<h1>{this.state.txt}</h1>
-				<Widget update={this.update.bind(this)} />
-				<Button>Submit</Button>
-			</div>
-		)
-	}
+const App = () => {
+    return (
+        <div className="container">
+            <div className="app-wrapper">
+                <div>
+                    
+                    <Header />
+                    
+                </div>
+            </div>
+        </div>
+    )
 }
-
-// Component function
-const Widget = (props) => 
-	<input type="text" onChange={props.update} />
-
-const Button = (props) =>
-	<button>{props.children}</button>
 
 export default App;
